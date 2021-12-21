@@ -44,9 +44,13 @@ function App() {
 
       // 4. TODO - Make Detections
       const img = tf.browser.fromPixels(video)
-      const resized = tf.image.resizeBilinear(img, [640,480])
+      const resized = tf.image.resizeBilinear(img, [800,600])
       const casted = resized.cast('int32')
       const expanded = casted.expandDims(0)
+
+      //const img = tf.browser.fromPixels(video).toInt();
+      //const expanded = img.transpose([0,1,2]).expandDims();
+
       const obj = await net.executeAsync(expanded)
       
       //console.log(await obj[1].array())
@@ -59,7 +63,6 @@ function App() {
       const ctx = canvasRef.current.getContext("2d");
 
       // 5. TODO - Update drawing utility
-      // drawSomething(obj, ctx)  
       requestAnimationFrame(()=>{drawRect(boxes[0], classes[0], scores[0], 0.7, videoWidth, videoHeight, ctx)}); 
 
       tf.dispose(img)
