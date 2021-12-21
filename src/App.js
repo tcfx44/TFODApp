@@ -14,7 +14,8 @@ function App() {
   // Main function
   const runCoco = async () => {
     // 3. TODO - Load network 
-    const net = await tf.loadGraphModel('./target_detection/model.json')
+    //const net = await tf.loadGraphModel('./models/target_detection/model.json')
+    const net = await tf.loadGraphModel('https://raw.githubusercontent.com/tcfx44/TFODApp/main/public/models/target_detection/model.json')
     
     // Loop and detect hands
     setInterval(() => {
